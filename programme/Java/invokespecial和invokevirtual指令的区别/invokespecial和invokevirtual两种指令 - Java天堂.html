@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://www.javatt.com/p/120223 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="invokespecial和invokevirtual两种指令 - Java天堂">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://www.javatt.com/xmlrpc.php">
+	<title>invokespecial和invokevirtual两种指令 - Java天堂</title>
+	<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="stylesheet" id="wp-block-library-css" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="prismatic-blocks-css" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/styles-blocks.css" type="text/css" media="all">
+<link rel="stylesheet" id="prismatic-highlight-css" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/monokai.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-css-css" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="style-css-css" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/style.css" type="text/css" media="all">
+<script src="./invokespecial和invokevirtual两种指令 - Java天堂_files/f.txt"></script><script src="./invokespecial和invokevirtual两种指令 - Java天堂_files/f(1).txt" id="google_shimpl"></script><script src="./invokespecial和invokevirtual两种指令 - Java天堂_files/hm.js.下载"></script><script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/jquery.js.下载"></script>
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/jquery-migrate.min.js.下载"></script>
+<link rel="https://api.w.org/" href="https://www.javatt.com/wp-json/">
+<link rel="canonical" href="https://www.javatt.com/p/120223">
+<link rel="alternate" type="application/json+oembed" href="https://www.javatt.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.javatt.com%2Fp%2F120223">
+<link rel="alternate" type="text/xml+oembed" href="https://www.javatt.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.javatt.com%2Fp%2F120223&amp;format=xml">
+    <style type="text/css">
+                @media (min-width: 1350px) {
+            .container {
+                max-width: 1350px;
+            }
+        }
+        
+        #primaryMenu.navbar,
+        #primaryMenu .dropdown-menu {
+			background-color: #000000 !important;
+		}
+        #primaryMenu .navbar-brand a,
+        #primaryMenu .nav-link:focus,
+        #primaryMenu .nav-link:hover,
+        #primaryMenu .nav-link,
+        #primaryMenu .active>.nav-link,
+        #primaryMenu .nav-link.active,
+        #primaryMenu .nav-link.open,
+        #primaryMenu .open>.nav-link,
+        #primaryMenu .dropdown-item,
+        #primaryMenu .dropdown-item.active,
+        #primaryMenu .dropdown-item:active,
+        #primaryMenu .dropdown-item:focus,
+        #primaryMenu .dropdown-item:hover{
+			color: #ffffff !important;
+		}
+        a, h2, h3, h4, h5, h6 {
+			color: #428BD1;
+		}
+        a:focus, a:hover {
+			color: #3071A9		}
+		.btn-outline-primary, .btn-primary:active, .btn-outline-primary:disabled{
+			color: #0275d8;
+			border-color: #0275d8;
+		}
+		.btn-primary,.btn-primary:hover,.btn-primary:active, .btn-primary:focus,
+		.btn-primary.disabled, .btn-primary:disabled,
+		.btn-outline-primary:hover,.btn-outline-primary:active, .btn-outline-primary:focus,
+		.page-item.active .page-link{
+			color: #fff;
+			box-shadow: none;
+			background-color: #0275d8;
+			border-color: #0275d8;
+		}
+		.form-control:focus {
+			border-color: #0275d8;
+		}
+		.page-link, .page-link:focus, .page-link:hover{
+			color: #0275d8;
+		}
+        article .card, article .card-body {
+            background-color: #f6f6f6;
+        }
+    </style>
+    		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<style>:root {
+    --sgi-ltrav-border-radius: 50%;
+
+
+    --sgi-ltrav-text-transform: uppercase;
+    --sgi-ltrav-font-family: "";
+    --sgi-ltrav-font-weight: 400;
+    --sgi-ltrav-font-style: regular;
+    --sgi-ltrav-font-size: 18px;
+    
+}   
+
+#wp-toolbar .sgi-letter-avatar {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 16px !important;
+    width: 16px !important;
+    margin: -4px 0 0 6px;
+    line-height: 24px !important;
+}
+
+#wp-toolbar .sgi-letter-avatar > span {
+
+    line-height: 16px !important;
+    font-size: 11px !important;
+    text-align: center;
+    display: block;
+
+
+}
+
+#buddypress ul.item-list li .sgi-letter-avatar {
+    float:left;
+    margin:0 10px 0 0;
+}
+
+.sgi-letter-avatar{
+    background-color: var(--sgi-ltrav-bg);
+    text-align: center;
+    border-radius: var(--sgi-ltrav-border-radius) !important;
+}
+
+.sgi-letter-avatar > span{
+    color: var(--sgi-ltrav-color);
+    display: block;
+    text-transform: var(--sgi-ltrav-text-transform);
+    font-family: var(--sgi-ltrav-font-family);
+    font-weight: var(--sgi-ltrav-font-weight);
+    font-style: var(--sgi-ltrav-font-style);
+    font-size: var(--sgi-ltrav-font-size);
+}</style><meta http-equiv="origin-trial" content="AxujKG9INjsZ8/gUq8+dTruNvk7RjZQ1oFhhgQbcTJKDnZfbzSTE81wvC2Hzaf3TW4avA76LTZEMdiedF1vIbA4AAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="Azuce85ORtSnWe1MZDTv68qpaW3iHyfL9YbLRy0cwcCZwVnePnOmkUJlG8HGikmOwhZU22dElCcfrfX2HhrBPAkAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A16nvcdeoOAqrJcmjLRpl1I6f3McDD8EfofAYTt/P/H4/AWwB99nxiPp6kA0fXoiZav908Z8etuL16laFPUdfQsAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxBHdr0J44vFBQtZUqX9sjiqf5yWZ/OcHRcRMN3H9TH+t90V/j3ENW6C8+igBZFXMJ7G3Pr8Dd13632aLng42wgAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A88BWHFjcawUfKU3lIejLoryXoyjooBXLgWmGh+hNcqMK44cugvsI5YZbNarYvi3roc1fYbHA1AVbhAtuHZflgEAAAB2eyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjUyNzc0NDAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/OOU4XAFfeAV4kM4+W9WBwNAHqq/bvtrRcJ1wpnNyO/i076BSUy1d14l2kBEgVmEuvxojSpD23172C6hBg2AQYAAACWeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjM0MDgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="AwrB+XVH/KV6HfZNVtSEqlUJi3yUbtCp0/TJRj+38NDIw19/9P1h7ECTtdLdhIzG0Bsl4n/0rVmttJtGUCcewgAAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjM0MDgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="Ax15QOERqai2A5XWrDY38Eg07xh2T0pkhpDPJuDlxr7D2Ka8wHvklgK7tTPZOnT+8H31lwHto5JpvYV8jRn1WgIAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjM0MDgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><link rel="preload" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/f(2).txt" as="script"><script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/f(2).txt"></script><link rel="preload" href="./invokespecial和invokevirtual两种指令 - Java天堂_files/f(2).txt" as="script"><script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/f(2).txt"></script></head>
+
+<body class="post-template-default single single-post postid-120223 single-format-standard">
+
+<div class="hfeed site" id="page" style="height: auto !important;">
+
+	<!-- ******************* The Navbar Area ******************* -->
+	<div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
+
+		<nav id="primaryMenu" class="navbar navbar-expand-md navbar-dark bg-dark">
+
+					<div class="container">
+		
+
+
+					<!-- Your site title as branding in the menu -->
+					
+						
+							<a class="navbar-brand" rel="home" href="https://www.javatt.com/" title="Java天堂">Java天堂</a>
+						
+												
+					
+					<!-- end custom logo -->
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#primaryMenuContainer" aria-controls="primaryMenuContainer" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+				<!-- The WordPress Menu goes here -->
+				<div id="primaryMenuContainer" class="collapse navbar-collapse"><ul id="menu-mainmenu" class="navbar-nav ml-auto mr-0"><li id="menu-item-5884" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-5884 nav-item"><a href="https://www.javatt.com/" class="nav-link">首页</a></li><li id="menu-item-782" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-782 nav-item"><a href="https://www.javatt.com/c/java" class="nav-link">Java</a></li><li id="menu-item-781" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-781 nav-item"><a href="https://www.javatt.com/c/android" class="nav-link">Android</a></li><li id="menu-item-785" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-785 nav-item"><a href="https://www.javatt.com/c/spring" class="nav-link">spring</a></li><li id="menu-item-783" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-783 nav-item"><a href="https://www.javatt.com/c/maven" class="nav-link">maven</a></li><li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784 nav-item"><a href="https://www.javatt.com/c/mybatis" class="nav-link">Mybatis</a></li><li id="menu-item-786" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-786 nav-item"><a href="https://www.javatt.com/c/structs" class="nav-link">structs</a></li><li id="menu-item-787" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-787 nav-item"><a href="https://www.javatt.com/c/tomcat" class="nav-link">Tomcat</a></li></ul></div>						</div><!-- .container -->
+			
+		</nav><!-- .site-navigation -->
+
+	</div><!-- .wrapper-navbar end -->
+
+	
+<div class="wrapper" id="single-wrapper" style="height: auto !important;">
+
+	<div class="container" id="content" tabindex="-1" style="height: auto !important;">
+
+		<div class="row d-flex flex-row" style="height: auto !important;">
+
+			
+			<div class="col-md-9 content-area" id="primary" style="height: auto !important;">
+
+				
+					<main class="site-main" id="main" style="height: auto !important;">
+
+						
+							
+							<article class="article-content post-120223 post type-post status-publish format-standard hentry category-java" id="post-120223" style="height: auto !important;">
+
+    <div class="card" style="height: auto !important;">
+        <header class="card-header bg-light">
+
+            <h1 class="card-title">invokespecial和invokevirtual两种指令</h1>
+            <div class="card-text small text-muted">
+
+                <span class="posted-date meta-item mr-3 text-muted"><i class="dashicons dashicons-clock icon14"></i> <time class="published" datetime="2021-11-10T09:14:41+00:00">2021-11-10</time></span><span class="cat-links meta-item mr-3 text-muted"><i class="dashicons dashicons-category icon14"></i> <a class="text-muted" href="https://www.javatt.com/c/java" rel="category tag">Java</a></span><span class="comments-link meta-item mr-3"><i class="dashicons dashicons-admin-comments icon14"></i> <a href="https://www.javatt.com/p/120223#respond" class="text-muted">发表评论</a></span>
+            </div>
+
+        </header><!-- .entry-header -->
+
+        <div class="card-body" style="height: auto !important;">
+
+            <div class="code-block code-block-1" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+<script async="" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/f(3).txt"></script>
+<ins class="adsbygoogle" style="display: block; text-align: center; height: 200px;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-1963104644603965" data-ad-slot="7469217754" data-adsbygoogle-status="done" data-ad-status="unfilled"><ins id="aswift_0_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 200px; width: 945px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_0_anchor" style="border: none; height: 200px; width: 945px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:945px;height:200px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="945" height="200" frameborder="0" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-load-complete="true" data-google-query-id="CNbyrejulPQCFVcDXAodJeUIwg"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+<p style="font-family:Arial;font-size:14px;line-height:26px;"><span style="color:rgb(51,51,51);">1.<strong>invokespecial只能调用三类方法</strong>：<strong>&lt;init&gt;方法</strong>；<strong>private方法</strong>；<strong>super.method()</strong>。因为这三类方法的调用对象在</span><span style="color:#ff0000;">编译时</span><span style="color:#333333;">就可以确定。</span></p>
+<p style="font-family:Arial;font-size:14px;line-height:26px;"><span style="color:rgb(51,51,51);">2.<strong>invokevirtual</strong>是一种</span><span style="color:#ff0000;">动态分派</span><span style="color:#333333;">的调用指令：也就是引用的类型并不能决定方法属于哪个类型。</span></p>
+<p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+看如下代码：</p>
+<p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+</p><pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubClass1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SuperClass</span></span>{
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>{
+		SubClass1 sb = <span class="hljs-keyword">new</span> SubClass1();
+		sb.commMethod();
+	}
+}</code></pre>
+<div class="dp-highlighter bg_java" style="font-family:Consolas, &#39;Courier New&#39;, Courier, mono, serif;color:rgb(51,51,51);line-height:26px;">
+<div class="bar">
+<div class="tools" style="font-size:9px;line-height:normal;font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;color:#C0C0C0;border-left-width:3px;border-left-style:solid;border-left-color:rgb(108,226,108);">
+<strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/yjy1304/article/details/47357991?locationNum=12&amp;fps=1#" rel="nofollow" class="ViewSource" title="view plain" style="color:rgb(160,160,160);text-decoration:none;border:none;font-size:9px;display:inline-block;width:16px;text-indent:-2000px;" target="_blank">vi</a></div>
+</div>
+</div>
+<p><br style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;"><span style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">SubClass1的引用sb调用了commMethod方法，这个方法实际来自于SuperClass，我们将这段代码编译成字节码后是</span></p>
+<p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+</p><p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+Compiled from “SubClass1.<a href="http://lib.csdn.net/base/java" rel="nofollow" class="replace_word" title="Java 知识库" style="color:rgb(223,52,52);text-decoration:none;font-weight:bold;" target="_blank">Java</a>“<br>
+public class com.csii.parent.SubClass1 extends com.csii.parent.SuperClass<br>
+&nbsp; SourceFile: “SubClass1.java”<br>
+&nbsp; minor version: 0<br>
+&nbsp; major version: 50<br>
+&nbsp; Constant pool:<br>
+const #1 = class<span> </span>#2;<span></span>// &nbsp;com/csii/parent/SubClass1<br>
+const #2 = Asciz<span> </span>com/csii/parent/SubClass1;<br>
+const #3 = class<span> </span>#4;<span></span>// &nbsp;com/csii/parent/SuperClass<br>
+const #4 = Asciz<span> </span>com/csii/parent/SuperClass;<br>
+const #5 = Asciz<span> </span>&lt;init&gt;;<br>
+const #6 = Asciz<span> </span>()V;<br>
+const #7 = Asciz<span> </span>Code;<br>
+const #8 = Method<span> </span>#3.#9;<span></span>// &nbsp;com/csii/parent/SuperClass.”&lt;init&gt;”:()V<br>
+const #9 = NameAndType<span> </span>#5:#6;// &nbsp;“&lt;init&gt;”:()V<br>
+const #10 = Asciz<span> </span>LineNumberTable;<br>
+const #11 = Asciz<span> </span>LocalVariableTable;<br>
+const #12 = Asciz<span> </span>this;<br>
+const #13 = Asciz<span> </span>Lcom/csii/parent/SubClass1;;<br>
+const #14 = Asciz<span> </span>main;<br>
+const #15 = Asciz<span> </span>([Ljava/lang/String;)V;<br>
+const #16 = Method<span> </span>#1.#9;<span></span>// &nbsp;com/csii/parent/SubClass1.”&lt;init&gt;”:()V<br><span>const #17 = Method<span></span>#1.#18;<span></span>// &nbsp;com/csii/parent/SubClass1.commMethod:()V</span><br>
+const #18 = NameAndType<span> </span>#19:#6;// &nbsp;commMethod:()V<br>
+const #19 = Asciz<span> </span>commMethod;<br>
+const #20 = Asciz<span> </span>args;<br>
+const #21 = Asciz<span> </span>[Ljava/lang/String;;<br>
+const #22 = Asciz<span> </span>sb;<br>
+const #23 = Asciz<span> </span>SourceFile;<br>
+const #24 = Asciz<span> </span>SubClass1.java;</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1963104644603965" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 0px;" data-ad-status="unfilled"><ins id="aswift_2_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 945px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_2_anchor" style="border: none; height: 0px; width: 945px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: hidden; opacity: 0;"><iframe id="aswift_2" name="aswift_2" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 945px; height: 0px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="945" height="0" frameborder="0" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/ads(1).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!3" data-load-complete="true" data-google-query-id="COSruujulPQCFYpFvAodZX8CeA"></iframe></ins></ins></ins></div>
+<p>
+{<br>
+public com.csii.parent.SubClass1();<br>
+&nbsp; Code:<br>
+&nbsp; &nbsp;Stack=1, Locals=1, Args_size=1<br>
+&nbsp; &nbsp;0:<span> </span>aload_0<br>
+&nbsp; &nbsp;1:<span> </span>invokespecial<span></span>#8; //Method com/csii/parent/SuperClass.”&lt;init&gt;”:()V<br>
+&nbsp; &nbsp;4:<span> </span>return<br>
+&nbsp; LineNumberTable:&nbsp;<br>
+&nbsp; &nbsp;line 3: 0</p>
+<p>
+&nbsp; LocalVariableTable:&nbsp;<br>
+&nbsp; &nbsp;Start &nbsp;Length &nbsp;Slot &nbsp;Name &nbsp; Signature<br>
+&nbsp; &nbsp;0 &nbsp; &nbsp; &nbsp;5 &nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp;this &nbsp; &nbsp; &nbsp; Lcom/csii/parent/SubClass1;</p>
+<p>
+public static void main(java.lang.String[]);<br>
+&nbsp; Code:<br>
+&nbsp; &nbsp;Stack=2, Locals=2, Args_size=1<br>
+&nbsp; &nbsp;0:<span> </span>new<span> </span><br>
+&nbsp;#1; //class com/csii/parent/SubClass1<br>
+&nbsp; &nbsp;3:<span> </span>dup<br>
+&nbsp; &nbsp;4:<span> </span>invokespecial<span></span>#16; //Method “&lt;init&gt;”:()V<br>
+&nbsp; &nbsp;7:<span> </span>astore_1<br>
+&nbsp; &nbsp;8:<span> </span>aload_1<br>
+&nbsp; &nbsp;9:<span> </span><span>invokevirtual<span></span></span>#17; //Method commMethod:()V<br>
+&nbsp; &nbsp;12:<span> </span>return<br>
+&nbsp; LineNumberTable:&nbsp;<br>
+&nbsp; &nbsp;line 9: 0<br>
+&nbsp; &nbsp;line 10: 8<br>
+&nbsp; &nbsp;line 11: 12</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1963104644603965" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;"><ins id="aswift_3_expand" style="border: none; height: 280px; width: 945px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_3_anchor" style="border: none; height: 280px; width: 945px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"></ins></ins></ins></div>
+<p>
+&nbsp; LocalVariableTable:&nbsp;<br>
+&nbsp; &nbsp;Start &nbsp;Length &nbsp;Slot &nbsp;Name &nbsp; Signature<br>
+&nbsp; &nbsp;0 &nbsp; &nbsp; &nbsp;13 &nbsp; &nbsp; &nbsp;0 &nbsp; &nbsp;args &nbsp; &nbsp; &nbsp; [Ljava/lang/String;<br>
+&nbsp; &nbsp;8 &nbsp; &nbsp; &nbsp;5 &nbsp; &nbsp; &nbsp;1 &nbsp; &nbsp;sb &nbsp; &nbsp; &nbsp; Lcom/csii/parent/SubClass1;</p>
+<p>
+}</p>
+<p>可以看到引用sb.commMethod()编译后的字节码命令是invokevirtual，而字节码中调用方法也是com/csii/parent/SubClass1.commMethod:()V。没错，编译后字节码中显示它调用了子类的commMethod()方法，虚拟机运行这段代码时会动态绑定到SuperClass的commMethod方法上。</p>
+<p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+以上是子类继承并直接调用父类方法时编译的结果。若采用super.method()调用父类方法编译后将会采用invokespecial，这样执行的效率将会高一点。</p>
+<p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+另外，通过接口的引用调用方法时也会使用invokevirtual。</p>
+<p style="color:rgb(51,51,51);font-family:Arial;font-size:14px;line-height:26px;">
+<a href="http://blog.csdn.net/yjy1304/article/details/47357991?locationNum=12&amp;fps=1" rel="nofollow" target="_blank">原博</a></p>
+<p><!-- --></p>
+
+                <div class="d-flex justify-content-between flex-wrap my-4 font-weight-bold">
+
+        <div>
+                            上一篇： <a href="https://www.javatt.com/p/120224" rel="next">Error:Unable to start the daemon process. This problem might be caused by incorrect configuration of</a>                    </div>
+
+        <div>
+                            下一篇： <a href="https://www.javatt.com/p/120222" rel="prev">java虚拟机–jvm client模式与server模式的区别</a>                    </div>
+
+    </div>
+
+
+            
+        </div>
+    </div>
+
+</article><!-- #post-## -->
+
+							
+<div class="comments-area mt-5 text-small" id="comments">
+
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.javatt.com/p/120223#respond" style="display:none;">取消回复</a></small></h3>			<form action="https://www.javatt.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<p class="comment-notes"><span id="email-notes">邮箱地址不会被公开。</span> 必填项已用<span class="required">*</span>标注</p><div class="form-group comment-form-comment">
+    <label for="comment">评论 <span class="required">*</span></label>
+    <textarea class="form-control" id="comment" name="comment" aria-required="true" cols="45" rows="8"></textarea>
+    </div><div class="form-group comment-form-author" <label="" for="author">昵称 <span class="required">*</span> <input class="form-control" id="author" name="author" type="text" value="" size="30" aria-required="true"></div>
+<div class="form-group comment-form-email"><label for="email">邮箱 <span class="required">*</span></label> <input class="form-control" id="email" name="email" type="email" value="" size="30" aria-required="true"></div>
+<div class="form-group comment-form-url"><label for="url">网站</label> <input class="form-control" id="url" name="url" type="url" value="" size="30"></div>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="btn btn-secondary" value="发表评论"> <input type="hidden" name="comment_post_ID" value="120223" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4eb98953b9"></p><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea>			<input type="hidden" id="ak_js" name="ak_js" value="1636790242958"></form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+						
+					</main><!-- #main -->
+
+				</div><!-- #primary -->
+
+				
+
+<div class="col-md-3 widget-area" id="global-sidebar" role="complementary">
+	
+
+			<aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">近期评论</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">dxinli</span>发表在《<a href="https://www.javatt.com/p/47643#comment-5438">JVM中三个常量池（两种常量池）的解析及其随jdk版本的变化</a>》</li><li class="recentcomments"><span class="comment-author-link">jb</span>发表在《<a href="https://www.javatt.com/p/42319#comment-5346">比最差的API(ETW)更差的API(LTTng)是如何炼成的, 谈如何写一个好的接口</a>》</li><li class="recentcomments"><span class="comment-author-link">amazm</span>发表在《<a href="https://www.javatt.com/p/104382#comment-5291">TOMCAT  JAVA_HOME  or  JRE_HOME   environment variable is not defined correctly</a>》</li><li class="recentcomments"><span class="comment-author-link">12额2东方分</span>发表在《<a href="https://www.javatt.com/p/51565#comment-5268">深入了解java中的编码和字符集</a>》</li><li class="recentcomments"><span class="comment-author-link">reefe</span>发表在《<a href="https://www.javatt.com/p/42028#comment-5127">解决ValidationException: HV000183: Unable to initialize ‘javax.el.ExpressionFactory’错误</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href="http://visonforcoding.github.io/" rel="external nofollow" class="url">曹麦穗</a></span>发表在《<a href="https://www.javatt.com/p/98019#comment-4972">spring boot中使用hibernate 拦截sql语句  （StatementInspector）</a>》</li><li class="recentcomments"><span class="comment-author-link">王</span>发表在《<a href="https://www.javatt.com/p/60669#comment-4448">IBM WAS9.0服务器+JDK8安装与部署（Linux）</a>》</li></ul></aside>	
+
+	
+
+	
+
+	
+	</div>
+
+
+			</div><!-- .row -->
+
+		</div><!-- Container end -->
+
+	</div><!-- Wrapper end -->
+
+	
+
+
+<div class="wrapper" id="wrapper-footer">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<footer class="site-footer" id="colophon">
+
+					<div class="site-info">
+
+                        <span>Theme: <a href="https://www.awaimai.com/maizi">Maizi</a>.</span>
+
+                        <span>Powered by <a href="https://wordpress.org/" target="_blank">WordPress</a>.</span>
+
+                        <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank" title="工业和信息化部ICP/IP地址/域名信息备案管理系统">粤ICP备17138695号</a>
+
+						<div class="widget_text footer-copyright"><div class="textwidget custom-html-widget"><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ebde28b07bff5f32b87cc5b5092c7e4c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</div></div>
+					</div><!-- .site-info -->
+
+					<a href="https://www.javatt.com/p/120223#" class="scroll-top">
+
+						<i class="dashicons dashicons-arrow-up-alt2 icon16"></i>
+
+					</a>
+				</footer><!-- #colophon -->
+
+			</div><!--col end -->
+
+		</div><!-- row end -->
+
+	</div><!-- container end -->
+
+</div><!-- wrapper end -->
+
+</div><!-- #page -->
+
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/highlight-core.js.下载"></script>
+<script type="text/javascript">
+hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/popper.min.js.下载"></script>
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/bootstrap.min.js.下载"></script>
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/js.cookie-2.2.1.min.js.下载"></script>
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/theme.js.下载"></script>
+<script type="text/javascript">
+var $ = jQuery;
+
+            var cookieName = 'aside-content-tab-id';
+
+            var tabId = Cookies.get(cookieName);
+            if (tabId !== undefined) {
+                $('#myTab a[href="#' + tabId + '"]').tab('show');
+            }
+            
+
+            $('.aside-content').find('.nav-link').on('click', function() {
+                tabId = $(this).attr('aria-controls');
+                Cookies.set(cookieName, tabId, { expires: 7, path: '/' })
+            });
+        
+jQuery.post('https://www.javatt.com/wp-admin/admin-ajax.php', {
+                action  : 'update_post_views',
+                post_id : 120223
+            });
+</script>
+<script type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/wp-embed.min.js.下载"></script>
+<script async="async" type="text/javascript" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/form.js.下载"></script>
+
+
+
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><ins id="aswift_1_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_1_anchor" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/ads(2).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-load-complete="true"></iframe></ins></ins></ins><iframe src="./invokespecial和invokevirtual两种指令 - Java天堂_files/aframe.html" width="0" height="0" style="display: none;"></iframe></body><iframe id="google_esf" name="google_esf" src="./invokespecial和invokevirtual两种指令 - Java天堂_files/zrt_lookup.html" style="display: none;"></iframe></html>
