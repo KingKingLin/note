@@ -31,7 +31,7 @@
 
 # 三、复试笔记
 
-- [24届北京邮电大学智能科学与技术复试.md](./second interview of bupt/24届北京邮电大学智能科学与技术复试.md)
+- [24届北京邮电大学智能科学与技术复试.md](./second%20interview%20of%20bupt/24届北京邮电大学智能科学与技术复试.md)
 
-- [复试简历](./second interview of bupt/复试简历.doc)
-- [自我介绍](./second interview of bupt/自我介绍.md)
+- [复试简历](./second%20interview%20of%20bupt/复试简历.doc)
+- [自我介绍](./second%20interview%20of%20bupt/自我介绍.md)
